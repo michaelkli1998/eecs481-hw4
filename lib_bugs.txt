@@ -1,0 +1,591 @@
+Found 73 issues
+
+contrib/libtests/timepng.c:72: error: NULL_DEREFERENCE
+  pointer `io` last assigned on line 70 could be null and is dereferenced at line 72, column 29.
+  70.      io_data *io = (io_data*)png_get_io_ptr(png_ptr);
+  71.
+  72. >    if (fread(buffer, cb, 1, io->input) != 1)
+  73.         png_error(png_ptr, strerror(errno));
+  74.
+
+contrib/libtests/timepng.c:89: error: DEAD_STORE
+  The value written to &display is never used.
+  87.       * exits.
+  88.       */
+  89. >    png_bytep row = NULL, display = NULL;
+  90.      io_data io_copy;
+  91.
+
+contrib/libtests/timepng.c:89: error: DEAD_STORE
+  The value written to &row is never used.
+  87.       * exits.
+  88.       */
+  89. >    png_bytep row = NULL, display = NULL;
+  90.      io_data io_copy;
+  91.
+
+contrib/libtests/pngunknown.c:466: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 464 could be null and is dereferenced at line 466, column 50.
+  464.      display *d = (display*)png_get_error_ptr(png_ptr);
+  465.
+  466. >    fprintf(stderr, "%s(%s): libpng error: %s\n", d->file, d->test, message);
+  467.      display_exit(d);
+  468.   }
+
+contrib/libtests/pngunknown.c:475: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 473 could be null and is dereferenced at line 475, column 52.
+  473.      display *d = (display*)png_get_error_ptr(png_ptr);
+  474.
+  475. >    fprintf(stderr, "%s(%s): libpng warning: %s\n", d->file, d->test, message);
+  476.      ++(d->warning_count);
+  477.   }
+
+pngwrite.c:492: error: NULL_DEREFERENCE
+  pointer `tbuf` last assigned on line 491 could be null and is dereferenced by call to `png_convert_from_struct_tm()` at line 492, column 4.
+  490.
+  491.      tbuf = gmtime(&ttime);
+  492. >    png_convert_from_struct_tm(ptime, tbuf);
+  493.   }
+  494.   #endif
+
+contrib/libtests/pngunknown.c:523: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 518 could be null and is dereferenced at line 523, column 14.
+  521.
+  522.      if (chunk < 0) /* not one in our list, so not a known chunk */
+  523. >       keep = d->keep;
+  524.
+  525.      else
+
+contrib/libtests/pngunknown.c:534: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 518 could be null and is dereferenced at line 534, column 20.
+  532.             */
+  533.            if (chunk_info[chunk].unknown)
+  534. >             keep = d->keep;
+  535.
+  536.            else
+
+contrib/libtests/pngunknown.c:544: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 518 could be null and is dereferenced at line 544, column 69.
+  542.      {
+  543.         default:
+  544. >          fprintf(stderr, "%s(%s): %d: unrecognized chunk option\n", d->file,
+  545.               d->test, chunk_info[chunk].keep);
+  546.            display_exit(d);
+
+contrib/libtests/pngunknown.c:567: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 518 could be null and is dereferenced at line 567, column 10.
+  565.
+  566.         if (pc->location & PNG_AFTER_IDAT)
+  567. >          d->after_IDAT |= flag;
+  568.
+  569.         else
+
+contrib/libtests/pngunknown.c:570: error: NULL_DEREFERENCE
+  pointer `d` last assigned on line 518 could be null and is dereferenced at line 570, column 10.
+  568.
+  569.         else
+  570. >          d->before_IDAT |= flag;
+  571.      }
+  572.
+
+contrib/libtests/pngvalid.c:551: error: DEAD_STORE
+  The value written to &row is never used.
+  549.      {
+  550.         if (swap16)
+  551. >          return (*++row << 8) + result;
+  552.         else
+  553.            return (result << 8) + *++row;
+
+contrib/libtests/pngvalid.c:553: error: DEAD_STORE
+  The value written to &row is never used.
+  551.            return (*++row << 8) + result;
+  552.         else
+  553. >          return (result << 8) + *++row;
+  554.      }
+  555.
+
+pngtest.c:939: error: DEAD_STORE
+  The value written to &row_buf is never used.
+  937.         fprintf(STDERR, "%s -> %s: libpng read error\n", inname, outname);
+  938.         png_free(read_ptr, row_buf);
+  939. >       row_buf = NULL;
+  940.         if (verbose != 0)
+  941.           fprintf(STDERR, "   destroy read structs\n");
+
+pngtest.c:1659: error: DEAD_STORE
+  The value written to &row_buf is never used.
+  1657.      pngtest_debug("destroying row_buf for read_ptr");
+  1658.      png_free(read_ptr, row_buf);
+  1659. >    row_buf = NULL;
+  1660.   #endif /* SINGLE_ROWBUF_ALLOC */
+  1661.      pngtest_debug("destroying read_ptr, read_info_ptr, end_info_ptr");
+
+contrib/libtests/pngvalid.c:1098: error: NULL_DEREFERENCE
+  pointer `ps` last assigned on line 1096 could be null and is dereferenced at line 1098, column 9.
+  1096.      png_store *ps = voidcast(png_store*, png_get_error_ptr(pp));
+  1097.
+  1098. >    if (!ps->expect_error)
+  1099.         store_log(ps, pp, message, 1 /* error */);
+  1100.
+
+contrib/libtests/pngvalid.c:1114: error: NULL_DEREFERENCE
+  pointer `ps` last assigned on line 1112 could be null and is dereferenced at line 1114, column 9.
+  1112.      png_store *ps = voidcast(png_store*, png_get_error_ptr(pp));
+  1113.
+  1114. >    if (!ps->expect_warning)
+  1115.         store_log(ps, pp, message, 0 /* warning */);
+  1116.      else
+
+contrib/libtests/pngvalid.c:1285: error: NULL_DEREFERENCE
+  pointer `ps` last assigned on line 1284 could be null and is dereferenced at line 1285, column 22.
+  1283.      png_const_structp pp = ppIn;
+  1284.      png_store *ps = voidcast(png_store*, png_get_io_ptr(pp));
+  1285. >    size_t writepos = ps->writepos;
+  1286.      png_uint_32 chunkpos = ps->chunkpos;
+  1287.      png_uint_32 chunktype = ps->chunktype;
+
+contrib/tools/pngfix.c:1682: error: DEAD_STORE
+  The value written to &length is never used.
+  1680.         if (reread_byte(file) == 0) /* keyword null terminator */
+  1681.         {
+  1682. >          --length;
+  1683.            ++index;
+  1684.            (void)reread_byte(file); /* compression method */
+
+pngwutil.c:1782: error: NULL_DEREFERENCE
+  pointer `params_len` last assigned on line 1774 could be null and is dereferenced at line 1782, column 7.
+  1780.      for (i = 0; i < nparams; i++)
+  1781.      {
+  1782. >       params_len[i] = strlen(params[i]) + (i == nparams - 1 ? 0 : 1);
+  1783.         png_debug2(3, "pCAL parameter %d length = %lu", i,
+  1784.             (unsigned long)params_len[i]);
+
+contrib/libtests/pngvalid.c:1913: error: NULL_DEREFERENCE
+  pointer `pool` last assigned on line 1907 could be null and is dereferenced at line 1913, column 16.
+  1911.      if (new != NULL)
+  1912.      {
+  1913. >       if (cb > pool->max)
+  1914.            pool->max = cb;
+  1915.
+
+contrib/libtests/pngvalid.c:1946: error: NULL_DEREFERENCE
+  pointer `pool` last assigned on line 1907 could be null and is dereferenced at line 1946, column 17.
+  1944.          * else.
+  1945.          */
+  1946. >       store_log(pool->store, pp, "out of memory", 1 /* is_error */);
+  1947.      }
+  1948.
+
+contrib/libtests/pngvalid.c:1964: error: NULL_DEREFERENCE
+  pointer `pool` last assigned on line 1956 could be null and is dereferenced at line 1964, column 14.
+  1962.       * png_error if it is not.
+  1963.       */
+  1964. >    if (pp != pool->store->pread && pp != pool->store->pwrite)
+  1965.         pp = NULL;
+  1966.
+
+contrib/libtests/pngvalid.c:2142: error: DEAD_STORE
+  The value written to &pos is never used.
+  2140.
+  2141.         pos = standard_name_from_id(msg, sizeof msg, 0, id);
+  2142. >       pos = safecat(msg, sizeof msg, pos, ": file not found");
+  2143.         png_error(ps->pread, msg);
+  2144.      }
+
+pngrtran.c:2578: error: DEAD_STORE
+  The value written to &dp is never used.
+  2576.            for (i = 0; i < row_width; i++)
+  2577.            {
+  2578. >             *(--dp) = (png_byte)(255 - *(--sp));
+  2579.
+  2580.   /*          This does nothing:
+
+pngrtran.c:2602: error: DEAD_STORE
+  The value written to &dp is never used.
+  2600.            {
+  2601.               *(--dp) = (png_byte)(255 - *(--sp));
+  2602. >             *(--dp) = (png_byte)(255 - *(--sp));
+  2603.
+  2604.   /*          This does nothing:
+
+pngrtran.c:2646: error: DEAD_STORE
+  The value written to &dp is never used.
+  2644.            {
+  2645.               *(--dp) = (png_byte)(255 - *(--sp));
+  2646. >             *(--dp) = (png_byte)(255 - *(--sp));
+  2647.   /*
+  2648.               *(--dp) = *(--sp);
+
+pngrtran.c:2691: error: DEAD_STORE
+  The value written to &dp is never used.
+  2689.                  *(--dp) = *(--sp);
+  2690.               }
+  2691. >             *(--dp) = lo_filler;
+  2692.               row_info->channels = 2;
+  2693.               row_info->pixel_depth = 16;
+
+pngrtran.c:2729: error: DEAD_STORE
+  The value written to &dp is never used.
+  2727.               }
+  2728.               *(--dp) = lo_filler;
+  2729. >             *(--dp) = hi_filler;
+  2730.               row_info->channels = 2;
+  2731.               row_info->pixel_depth = 32;
+
+pngrtran.c:2770: error: DEAD_STORE
+  The value written to &dp is never used.
+  2768.                  *(--dp) = *(--sp);
+  2769.               }
+  2770. >             *(--dp) = lo_filler;
+  2771.               row_info->channels = 4;
+  2772.               row_info->pixel_depth = 32;
+
+pngrtran.c:2814: error: DEAD_STORE
+  The value written to &dp is never used.
+  2812.               }
+  2813.               *(--dp) = lo_filler;
+  2814. >             *(--dp) = hi_filler;
+  2815.               row_info->channels = 4;
+  2816.               row_info->pixel_depth = 64;
+
+contrib/libtests/pngstest.c:3130: error: RESOURCE_LEAK
+  resource of type `_IO_FILE` acquired to `image->input_file` by call to `fopen()` at line 3057, column 17 is not released after line 3130, column 11.
+  3128.      }
+  3129.
+  3130. >    return read_file(image, FORMAT_NO_CHANGE, NULL);
+  3131.   }
+  3132.
+
+pngrutil.c:3150: error: DEAD_STORE
+  The value written to &idat_limit is never used.
+  3148.      if (png_ptr->chunk_name == png_IDAT)
+  3149.      {
+  3150. >       png_alloc_size_t idat_limit = PNG_UINT_31_MAX;
+  3151.         size_t row_factor =
+  3152.            (png_ptr->width * png_ptr->channels * (png_ptr->bit_depth > 8? 2: 1)
+
+contrib/tools/pngfix.c:3179: error: NULL_DEREFERENCE
+  pointer `file` last assigned on line 3177 could be null and is dereferenced at line 3179, column 8.
+  3177.      struct file *file = get_control(png_ptr);
+  3178.
+  3179. >    if (file->global->warnings)
+  3180.         emit_error(file, LIBPNG_WARNING_CODE, message);
+  3181.   }
+
+contrib/tools/pngfix.c:3203: error: NULL_DEREFERENCE
+  pointer `file` last assigned on line 3190 could be null and is dereferenced at line 3203, column 8.
+  3201.       * start.
+  3202.       */
+  3203. >    if (file->read_count < 8)
+  3204.      {
+  3205.         assert(file->read_count == 0);
+
+png.c:3998: error: NULL_DEREFERENCE
+  pointer `table` last assigned on line 3993 could be null and is dereferenced at line 3998, column 32.
+  3996.      for (i = 0; i < num; i++)
+  3997.      {
+  3998. >       png_uint_16p sub_table = table[i] =
+  3999.             (png_uint_16p)png_malloc(png_ptr, 256 * (sizeof (png_uint_16)));
+  4000.
+
+png.c:4071: error: NULL_DEREFERENCE
+  pointer `table` last assigned on line 4063 could be null and is dereferenced at line 4071, column 7.
+  4069.       */
+  4070.      for (i = 0; i < num; i++)
+  4071. >       table[i] = (png_uint_16p)png_malloc(png_ptr,
+  4072.             256 * (sizeof (png_uint_16)));
+  4073.
+
+png.c:4104: error: NULL_DEREFERENCE
+  pointer `table` last assigned on line 4063 could be null and is dereferenced at line 4104, column 10.
+  4102.         while (last < bound)
+  4103.         {
+  4104. >          table[last & (0xffU >> shift)][last >> (8U - shift)] = out;
+  4105.            last++;
+  4106.         }
+
+png.c:4112: error: NULL_DEREFERENCE
+  pointer `table` last assigned on line 4063 could be null and is dereferenced at line 4112, column 7.
+  4110.      while (last < (num << 8))
+  4111.      {
+  4112. >       table[last & (0xff >> shift)][last >> (8U - shift)] = 65535U;
+  4113.         last++;
+  4114.      }
+
+png.c:4131: error: NULL_DEREFERENCE
+  pointer `table` last assigned on line 4127 could be null and is dereferenced at line 4131, column 10.
+  4129.      if (png_gamma_significant(gamma_val) != 0)
+  4130.         for (i=0; i<256; i++)
+  4131. >          table[i] = png_gamma_8bit_correct(i, gamma_val);
+  4132.
+  4133.      else
+
+png.c:4135: error: NULL_DEREFERENCE
+  pointer `table` last assigned on line 4127 could be null and is dereferenced at line 4135, column 10.
+  4133.      else
+  4134.         for (i=0; i<256; ++i)
+  4135. >          table[i] = (png_byte)(i & 0xff);
+  4136.   }
+  4137.
+
+contrib/libtests/pngvalid.c:4893: error: DEAD_STORE
+  The value written to &pos is never used.
+  4891.            pos = safecat(msg, sizeof msg, pos, ") returned: '");
+  4892.            pos = safecat(msg, sizeof msg, pos, result);
+  4893. >          pos = safecat(msg, sizeof msg, pos, "'");
+  4894.
+  4895.            png_error(pp, msg);
+
+contrib/libtests/pngvalid.c:5153: error: DEAD_STORE
+  The value written to &pos is never used.
+  5151.         pos = safecatn(msg, sizeof msg, pos, dp->npalette);
+  5152.         pos = safecat(msg, sizeof msg, pos, " -> ");
+  5153. >       pos = safecatn(msg, sizeof msg, pos, npalette);
+  5154.         png_error(pp, msg);
+  5155.      }
+
+contrib/libtests/pngvalid.c:5427: error: NULL_DEREFERENCE
+  pointer `dp` last assigned on line 5412 could be null and is dereferenced at line 5427, column 11.
+  5425.          * us the y in the sub-image:
+  5426.          */
+  5427. >       if (dp->do_interlace && dp->interlace_type == PNG_INTERLACE_ADAM7)
+  5428.         {
+  5429.   #ifdef PNG_USER_TRANSFORM_INFO_SUPPORTED
+
+contrib/libtests/pngvalid.c:5464: error: NULL_DEREFERENCE
+  pointer `dp` last assigned on line 5412 could be null and is dereferenced at line 5464, column 13.
+  5462.      }
+  5463.
+  5464. >    else if (dp->interlace_type == PNG_INTERLACE_ADAM7 &&
+  5465.          PNG_ROW_IN_INTERLACE_PASS(y, pass) &&
+  5466.          PNG_PASS_COLS(dp->w, pass) > 0)
+
+contrib/libtests/pngvalid.c:6146: error: DEAD_STORE
+  The value written to &i is never used.
+  6144.         {
+  6145.            if (format == 0 || !format->alpha_first)
+  6146. >              this->alpha = sample(row, colour_type, bit_depth, x, ++i, swap16,
+  6147.                        littleendian);
+  6148.
+
+contrib/libtests/pngvalid.c:6606: error: DEAD_STORE
+  The value written to &pos is never used.
+  6604.            pos = safecatn(message, sizeof message, pos, dp->output_colour_type);
+  6605.            pos = safecat(message, sizeof message, pos, ") with bit depth: ");
+  6606. >          pos = safecatn(message, sizeof message, pos, dp->output_bit_depth);
+  6607.
+  6608.            png_error(pp, message);
+
+contrib/libtests/pngvalid.c:6642: error: DEAD_STORE
+  The value written to &pos is never used.
+  6640.            pos = safecatn(message, sizeof message, pos, dp->output_colour_type);
+  6641.            pos = safecat(message, sizeof message, pos, " expected ");
+  6642. >          pos = safecatn(message, sizeof message, pos, test_pixel.colour_type);
+  6643.
+  6644.            png_error(pp, message);
+
+contrib/libtests/pngvalid.c:6654: error: DEAD_STORE
+  The value written to &pos is never used.
+  6652.            pos = safecatn(message, sizeof message, pos, dp->output_bit_depth);
+  6653.            pos = safecat(message, sizeof message, pos, " expected ");
+  6654. >          pos = safecatn(message, sizeof message, pos, test_pixel.bit_depth);
+  6655.
+  6656.            png_error(pp, message);
+
+contrib/libtests/pngvalid.c:6679: error: DEAD_STORE
+  The value written to &pos is never used.
+  6677.            pos = safecatn(message, sizeof message, pos, test_pixel.sample_depth);
+  6678.            pos = safecat(message, sizeof message, pos, " expected ");
+  6679. >          pos = safecatn(message, sizeof message, pos, test_pixel.bit_depth);
+  6680.
+  6681.            png_error(pp, message);
+
+contrib/libtests/pngvalid.c:6694: error: DEAD_STORE
+  The value written to &pos is never used.
+  6692.            pos = safecatn(message, sizeof message, pos, dp->output_bit_depth);
+  6693.            pos = safecat(message, sizeof message, pos, " expected ");
+  6694. >          pos = safecatn(message, sizeof message, pos, test_pixel.bit_depth);
+  6695.
+  6696.            png_error(pp, message);
+
+contrib/libtests/pngvalid.c:6745: error: DEAD_STORE
+  The value written to &pos is never used.
+  6743.         pos = safecat(message, sizeof message, pos, "..");
+  6744.         pos = safecatd(message, sizeof message, pos, (in+err)*max, 3);
+  6745. >       pos = safecat(message, sizeof message, pos, ")");
+  6746.
+  6747.         png_error(pp, message);
+
+contrib/libtests/pngvalid.c:6924: error: NULL_DEREFERENCE
+  pointer `dp` last assigned on line 6921 could be null and is dereferenced at line 6924, column 9.
+  6922.         png_get_progressive_ptr(pp));
+  6923.
+  6924. >    if (!dp->this.speed)
+  6925.         transform_image_validate(dp, pp, pi);
+  6926.      else
+
+contrib/libtests/pngvalid.c:6957: error: DEAD_STORE
+  The value written to &pos is never used.
+  6955.         /* Add the color space information, if any, to the name. */
+  6956.         pos = safecat(full_name, sizeof full_name, pos, name);
+  6957. >       pos = safecat_current_encoding(full_name, sizeof full_name, pos, d.pm);
+  6958.
+  6959.         /* Get a png_struct for reading the image. */
+
+contrib/libtests/pngvalid.c:7879: error: DEAD_STORE
+  The value written to &pos is never used.
+  7877.                  pos = safecat_color_encoding(buffer, sizeof buffer, pos, &o, 0);
+  7878.                  pos = safecat(buffer, sizeof buffer, pos, " -> ");
+  7879. >                pos = safecat_color_encoding(buffer, sizeof buffer, pos, &e, 0);
+  7880.
+  7881.                  png_error(pp, buffer);
+
+contrib/libtests/pngvalid.c:8034: error: DEAD_STORE
+  The value written to &bhi is never used.
+  8032.                  ghi = DU(ghi, gamma_depth, 0/*truncate*/);
+  8033.                  blo = DD(blo, gamma_depth, 0/*truncate*/);
+  8034. >                bhi = DU(bhi, gamma_depth, 0/*truncate*/);
+  8035.               }
+  8036.
+
+contrib/libtests/pngvalid.c:8033: error: DEAD_STORE
+  The value written to &blo is never used.
+  8031.                  glo = DD(glo, gamma_depth, 0/*truncate*/);
+  8032.                  ghi = DU(ghi, gamma_depth, 0/*truncate*/);
+  8033. >                blo = DD(blo, gamma_depth, 0/*truncate*/);
+  8034.                  bhi = DU(bhi, gamma_depth, 0/*truncate*/);
+  8035.               }
+
+contrib/libtests/pngvalid.c:8032: error: DEAD_STORE
+  The value written to &ghi is never used.
+  8030.                  rhi = DU(rhi, gamma_depth, 0/*truncate*/);
+  8031.                  glo = DD(glo, gamma_depth, 0/*truncate*/);
+  8032. >                ghi = DU(ghi, gamma_depth, 0/*truncate*/);
+  8033.                  blo = DD(blo, gamma_depth, 0/*truncate*/);
+  8034.                  bhi = DU(bhi, gamma_depth, 0/*truncate*/);
+
+contrib/libtests/pngvalid.c:8031: error: DEAD_STORE
+  The value written to &glo is never used.
+  8029.                  rlo = DD(rlo, gamma_depth, 0/*truncate*/);
+  8030.                  rhi = DU(rhi, gamma_depth, 0/*truncate*/);
+  8031. >                glo = DD(glo, gamma_depth, 0/*truncate*/);
+  8032.                  ghi = DU(ghi, gamma_depth, 0/*truncate*/);
+  8033.                  blo = DD(blo, gamma_depth, 0/*truncate*/);
+
+contrib/libtests/pngvalid.c:8030: error: DEAD_STORE
+  The value written to &rhi is never used.
+  8028.               {
+  8029.                  rlo = DD(rlo, gamma_depth, 0/*truncate*/);
+  8030. >                rhi = DU(rhi, gamma_depth, 0/*truncate*/);
+  8031.                  glo = DD(glo, gamma_depth, 0/*truncate*/);
+  8032.                  ghi = DU(ghi, gamma_depth, 0/*truncate*/);
+
+contrib/libtests/pngvalid.c:8029: error: DEAD_STORE
+  The value written to &rlo is never used.
+  8027.               if (gamma_depth != sample_depth)
+  8028.               {
+  8029. >                rlo = DD(rlo, gamma_depth, 0/*truncate*/);
+  8030.                  rhi = DU(rhi, gamma_depth, 0/*truncate*/);
+  8031.                  glo = DD(glo, gamma_depth, 0/*truncate*/);
+
+contrib/libtests/pngvalid.c:10138: error: DEAD_STORE
+  The value written to &pos is never used.
+  10136.               pos = safecatn(msg, sizeof msg, pos, outmax);
+  10137.               pos = safecat(msg, sizeof msg, pos, " < ");
+  10138. >             pos = safecatd(msg, sizeof msg, pos, is_hi, 1);
+  10139.
+  10140.               if (pass == 0) /* The error condition */
+
+contrib/libtests/pngvalid.c:10386: error: NULL_DEREFERENCE
+  pointer `dp` last assigned on line 10384 could be null and is dereferenced at line 10386, column 9.
+  10384.      gamma_display *dp = voidcast(gamma_display*, png_get_progressive_ptr(pp));
+  10385.
+  10386. >    if (!dp->this.speed)
+  10387.         gamma_image_validate(dp, pp, pi);
+  10388.      else
+
+contrib/libtests/pngvalid.c:10562: error: DEAD_STORE
+  The value written to &pos is never used.
+  10560.      pos = safecatd(name, sizeof name, pos, file_gamma, 3);
+  10561.      pos = safecat(name, sizeof name, pos, "/");
+  10562. >    pos = safecatd(name, sizeof name, pos, screen_gamma, 3);
+  10563.
+  10564.      (void)gamma_test(pm, colour_type, bit_depth, 0/*palette*/, interlace_type,
+
+contrib/libtests/pngvalid.c:10634: error: DEAD_STORE
+  The value written to &pos is never used.
+  10632.      pos = safecatd(name, sizeof name, pos, file_gamma, 3);
+  10633.      pos = safecat(name, sizeof name, pos, "->");
+  10634. >    pos = safecatd(name, sizeof name, pos, screen_gamma, 3);
+  10635.
+  10636.      gamma_test(pm, colour_type, bit_depth, palette_number, interlace_type,
+
+contrib/libtests/pngvalid.c:10914: error: DEAD_STORE
+  The value written to &pos is never used.
+  10912.            pos = safecatn(name, sizeof name, pos, background.gray);
+  10913.         pos = safecat(name, sizeof name, pos, ")^");
+  10914. >       pos = safecatd(name, sizeof name, pos, bg, 3);
+  10915.      }
+  10916.
+
+contrib/libtests/pngvalid.c:11576: error: DEAD_STORE
+  The value written to &pos is never used.
+  11574.      {
+  11575.         case SIGABRT:
+  11576. >          pos = safecat(msg, sizeof msg, pos, "abort");
+  11577.            break;
+  11578.
+
+contrib/libtests/pngvalid.c:11580: error: DEAD_STORE
+  The value written to &pos is never used.
+  11578.
+  11579.         case SIGFPE:
+  11580. >          pos = safecat(msg, sizeof msg, pos, "floating point exception");
+  11581.            break;
+  11582.
+
+contrib/libtests/pngvalid.c:11584: error: DEAD_STORE
+  The value written to &pos is never used.
+  11582.
+  11583.         case SIGILL:
+  11584. >          pos = safecat(msg, sizeof msg, pos, "illegal instruction");
+  11585.            break;
+  11586.
+
+contrib/libtests/pngvalid.c:11588: error: DEAD_STORE
+  The value written to &pos is never used.
+  11586.
+  11587.         case SIGINT:
+  11588. >          pos = safecat(msg, sizeof msg, pos, "interrupt");
+  11589.            break;
+  11590.
+
+contrib/libtests/pngvalid.c:11592: error: DEAD_STORE
+  The value written to &pos is never used.
+  11590.
+  11591.         case SIGSEGV:
+  11592. >          pos = safecat(msg, sizeof msg, pos, "invalid memory access");
+  11593.            break;
+  11594.
+
+contrib/libtests/pngvalid.c:11596: error: DEAD_STORE
+  The value written to &pos is never used.
+  11594.
+  11595.         case SIGTERM:
+  11596. >          pos = safecat(msg, sizeof msg, pos, "termination request");
+  11597.            break;
+  11598.
+
+contrib/libtests/pngvalid.c:11601: error: DEAD_STORE
+  The value written to &pos is never used.
+  11599.         default:
+  11600.            pos = safecat(msg, sizeof msg, pos, "unknown ");
+  11601. >          pos = safecatn(msg, sizeof msg, pos, signum);
+  11602.            break;
+  11603.      }
+
+Summary of the reports
+
+        DEAD_STORE: 44
+  NULL_DEREFERENCE: 28
+     RESOURCE_LEAK: 1
